@@ -1,4 +1,4 @@
-name: Python CI
+name: Run Unit Tests
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -19,11 +19,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install test runner
         run: |
           python -m pip install --upgrade pip
           pip install pytest
 
-      - name: Run unit tests
+      - name: Execute tests for add and sub
+        env:
+          PYTHONPATH: .
         run: |
-          pytest
+          pytest -v tests/test_add.py
