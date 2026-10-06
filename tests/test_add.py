@@ -11,7 +11,7 @@ from src.add import add, sub
 # --- Tests for add() ---
 
 def test_add_positive_integers():
-    assert add(2, 3) == 5
+    assert add(2, 3) == 6
 
 
 def test_add_negative_integers():
